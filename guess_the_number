@@ -1,0 +1,36 @@
+from random import *
+number = randrange(1, 101)
+counter = 1
+print('Добро пожаловать в числовую угадайку.')
+def is_valid(num):
+  if int(num).isdigit() is True and num in (1, 101, 1):
+    return True
+  else:
+    return False
+n = input('Введите целое число от 1 до 100: ')
+def play_game(n):
+  if is_valid(n) is False:
+    while is_valid(n) is False:
+      n = input('А может быть все-таки введем целое число от 1 до 100?')
+      is_valid(n)
+  else:
+    n = int(n)
+    while n != number:
+      if n < number:
+        n = int(input('Ваше число меньше загаданного, попробуйте еще разок'))
+        counter += 1
+      elif n > number:
+        n = int(input('Ваше число больше загаданного, попробуйте еще разок'))
+        counter += 1
+    print('Вы угадали, поздравляем!')
+    print('Количество попыток:', counter)
+    
+play_game(n)
+def play_again(answer):
+  if answer.lower() == 'y':
+    play_game(n)
+  elif answer.lower() == 'n':
+    print('Спасибо, что играли в числовую угадайку. Еще увидимся...')
+print('Хотите сыграть ещё? y - yes, n - no')
+answer = input()
+play_again(answer)
